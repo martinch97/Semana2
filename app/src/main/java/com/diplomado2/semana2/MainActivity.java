@@ -2,17 +2,13 @@ package com.diplomado2.semana2;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
-import static android.provider.AlarmClock.ACTION_SET_ALARM;
-import static android.provider.AlarmClock.EXTRA_HOUR;
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-import static android.provider.AlarmClock.EXTRA_MINUTES;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -54,5 +49,10 @@ public class MainActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageViewFoto2.setImageBitmap(imageBitmap);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }
