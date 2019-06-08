@@ -20,9 +20,9 @@ public class NoticiaDAO {
     private static String COLUMNA_IMAGEN = "imagen";
 
     public static String QUEY_CREAR_TABLA = " CREATE TABLE " + NOMBRE_TABLA + " (" +
-            COLUMNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+            COLUMNA_ID + " TEXT PRIMARY KEY , " +
             COLUMNA_TITULO + " TEXT , " +
-            COLUMNA_IMAGEN + " TEXT , " +
+            COLUMNA_IMAGEN + " TEXT" +
             " ) ";
 
     private DatabaseHelper databaseHelper;

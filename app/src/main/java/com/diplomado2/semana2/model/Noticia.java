@@ -9,6 +9,15 @@ public class Noticia {
     private String titulo;
     @SerializedName("imagen")
     private String imagen;
+    private boolean sync;
+
+    public boolean isSync() {
+        return sync;
+    }
+
+    public void setSync(boolean sync) {
+        this.sync = sync;
+    }
 
     public String getIdNoticia() {
         return idNoticia;

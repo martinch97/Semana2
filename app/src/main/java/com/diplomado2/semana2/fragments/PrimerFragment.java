@@ -7,14 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.diplomado2.semana2.R;
+import com.diplomado2.semana2.Util;
 import com.diplomado2.semana2.adapters.NoticiaAdapter;
 import com.diplomado2.semana2.adapters.RvAdapter;
-import com.diplomado2.semana2.api.ApiService;
+import com.diplomado2.semana2.dao.NoticiaDAO;
 import com.diplomado2.semana2.model.Noticia;
 
 import java.util.List;
@@ -22,8 +24,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -31,6 +31,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PrimerFragment extends Fragment {
     RecyclerView recyclerView;
+    NoticiaDAO noticiaDAO;
+    NoticiaAdapter noticiaAdapter;
 
     public PrimerFragment() {
         // Required empty public constructor
@@ -53,34 +55,41 @@ public class PrimerFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://androidbasico-martincs27.c9users.io/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ApiService service = retrofit.create(ApiService.class);
+        noticiaDAO = new NoticiaDAO(getContext());
 
-        service.getNoticias().enqueue(new Callback<List<Noticia>>() {
+        Util.getService().getNoticias().enqueue(new Callback<List<Noticia>>() {
             @Override
             public void onResponse(Call<List<Noticia>> call, Response<List<Noticia>> response) {
                 if (response.isSuccessful()) {
+                    for (Noticia noticia : response.body()) {
+                        noticiaDAO.insertarNoticia(noticia);
+                    }
+
                     //hacer el listado de noticias
-//                    NoticiaAdapter noticiaAdapter = new NoticiaAdapter(response.body(), PrimerFragment.this);
-//                    recyclerView.setAdapter(noticiaAdapter);
+                    noticiaAdapter = new NoticiaAdapter(response.body(), PrimerFragment.this);
+                    recyclerView.setAdapter(noticiaAdapter);
 
                     //ejemplo de una lista, con listas horizontales embebidas
-                    NoticiaAdapter noticiaAdapter = new NoticiaAdapter(response.body(), PrimerFragment.this);
-                    recyclerView.setAdapter(noticiaAdapter);
-                    RvAdapter rvAdapter = new RvAdapter(PrimerFragment.this, noticiaAdapter);
-                    recyclerView.setAdapter(rvAdapter);
+//                    setAdapterData(response.body());
 
                 }
             }
 
             @Override
             public void onFailure(Call<List<Noticia>> call, Throwable t) {
-
+                Log.w("TAG", "onFailure: ", t);
+                noticiaAdapter = new NoticiaAdapter(noticiaDAO.getNoticias(), PrimerFragment.this);
+                recyclerView.setAdapter(noticiaAdapter);
+//                setAdapterData(noticiaDAO.getNoticias());
             }
         });
+    }
+
+    private void setAdapterData(List<Noticia> noticias) {
+        NoticiaAdapter noticiaAdapter = new NoticiaAdapter(noticias, PrimerFragment.this);
+        recyclerView.setAdapter(noticiaAdapter);
+        RvAdapter rvAdapter = new RvAdapter(PrimerFragment.this, noticiaAdapter);
+        recyclerView.setAdapter(rvAdapter);
     }
 
 //    private List<Noticia> getNoticias() {
