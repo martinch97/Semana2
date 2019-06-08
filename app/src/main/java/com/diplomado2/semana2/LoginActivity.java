@@ -1,12 +1,12 @@
 package com.diplomado2.semana2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
@@ -14,6 +14,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String PASSWORD_TEST = "test123";
     TextInputEditText inputEmail;
     TextInputEditText inputPassword;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
+
+        sharedPreferences = getSharedPreferences("Semana4", MODE_PRIVATE);
+
+        boolean logeado = sharedPreferences.getBoolean("logeado", false);
+        if (logeado) {
+            goDrawerActivity();
+        }
+
 //        Button button = findViewById(R.id.buttonLogin);
 //        button.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -30,13 +39,23 @@ public class LoginActivity extends AppCompatActivity {
 //        });
     }
 
+    private void goDrawerActivity() {
+        Intent intent = new Intent(this, DrawerActivity.class);
+        startActivity(intent);
+        // finish() = destruir el activity
+        finish();
+    }
+
     public void buttonClick(View view) {
         if (validateEditText()) {
             if (EMAIL_TEST.equals(inputEmail.getText().toString()) &&
                     PASSWORD_TEST.equals(inputPassword.getText().toString())) {
-//                Toast.makeText(this, "Email Correcto", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("logeado", true);
+                editor.commit();
+
+                goDrawerActivity();
             } else {
                 Toast.makeText(this, "Email y/o password incorrecto, inténtelo de nuevo", Toast.LENGTH_SHORT).show();
             }
