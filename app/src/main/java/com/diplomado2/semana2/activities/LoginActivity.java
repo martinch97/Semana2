@@ -74,11 +74,12 @@ public class LoginActivity extends AppCompatActivity {
                         ResponseLogin responseLogin = response.body();
                         Toast.makeText(LoginActivity.this, responseLogin.getMensaje(), Toast.LENGTH_SHORT).show();
                         if (responseLogin.isSuccess()) {
+                            //si usuario y contraseña es correcto
                             //colocar en sesion
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean("logeado", true);
                             editor.commit();
-                            //si usuario y contraseña es correcto
+                            //ir al drawerActivity
                             goDrawerActivity();
                         } else {
                             //si el usuario o contraseña es incorrecto

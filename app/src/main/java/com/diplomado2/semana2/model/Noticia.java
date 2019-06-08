@@ -1,16 +1,21 @@
 package com.diplomado2.semana2.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Noticia {
-    private String id;
+    @SerializedName("id_noticia")
+    private String idNoticia;
+    @SerializedName("titulo")
     private String titulo;
+    @SerializedName("imagen")
     private String imagen;
 
-    public String getId() {
-        return id;
+    public String getIdNoticia() {
+        return idNoticia;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdNoticia(String idNoticia) {
+        this.idNoticia = idNoticia;
     }
 
     public String getTitulo() {
@@ -28,4 +33,5 @@ public class Noticia {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
 }
