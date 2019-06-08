@@ -1,4 +1,4 @@
-package com.diplomado2.semana2;
+package com.diplomado2.semana2.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.diplomado2.semana2.R;
 
 public class MainActivity extends AppCompatActivity {
 

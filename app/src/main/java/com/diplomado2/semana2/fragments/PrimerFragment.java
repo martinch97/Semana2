@@ -1,4 +1,4 @@
-package com.diplomado2.semana2;
+package com.diplomado2.semana2.fragments;
 
 
 import android.os.Bundle;
@@ -11,7 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.diplomado2.semana2.R;
+import com.diplomado2.semana2.adapters.NoticiaAdapter;
+import com.diplomado2.semana2.adapters.RvAdapter;
 import com.diplomado2.semana2.api.ApiService;
+import com.diplomado2.semana2.model.Noticia;
 
 import java.util.List;
 
@@ -48,6 +52,7 @@ public class PrimerFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://androidbasico-martincs27.c9users.io/")
                 .addConverterFactory(GsonConverterFactory.create())

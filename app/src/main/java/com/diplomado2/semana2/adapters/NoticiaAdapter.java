@@ -1,4 +1,4 @@
-package com.diplomado2.semana2;
+package com.diplomado2.semana2.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.diplomado2.semana2.R;
+import com.diplomado2.semana2.fragments.PrimerFragment;
+import com.diplomado2.semana2.model.Noticia;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

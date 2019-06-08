@@ -1,4 +1,4 @@
-package com.diplomado2.semana2;
+package com.diplomado2.semana2.model;
 
 public class Noticia {
     private String id;

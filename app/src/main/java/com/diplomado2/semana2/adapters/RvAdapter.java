@@ -1,4 +1,4 @@
-package com.diplomado2.semana2;
+package com.diplomado2.semana2.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.diplomado2.semana2.R;
+import com.diplomado2.semana2.fragments.PrimerFragment;
 
 public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder> {
     PrimerFragment fragment;

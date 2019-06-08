@@ -1,11 +1,13 @@
-package com.diplomado2.semana2;
+package com.diplomado2.semana2.activities;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
+
+import com.diplomado2.semana2.R;
 
 public class ContactoActivity extends AppCompatActivity {
 

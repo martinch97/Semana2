@@ -1,4 +1,4 @@
-package com.diplomado2.semana2;
+package com.diplomado2.semana2.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.diplomado2.semana2.R;
+import com.diplomado2.semana2.fragments.PrimerFragment;
+import com.diplomado2.semana2.fragments.SecondFragment;
+import com.diplomado2.semana2.fragments.ThirdFragment;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
