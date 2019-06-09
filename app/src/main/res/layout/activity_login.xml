@@ -84,4 +84,16 @@
         android:text="Login"
         android:textColor="#ffffff" />
 
+    <Button
+        android:id="@+id/buttonRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#9C27B0"
+        android:onClick="goRegistroActivity"
+        android:text="Registro"
+        android:textColor="#ffffff" />
+
 </LinearLayout>

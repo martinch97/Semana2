@@ -48,6 +48,11 @@ public class LoginActivity extends AppCompatActivity {
 //        });
     }
 
+    public void goRegistroActivity(View view) {
+        Intent intent = new Intent(this, RegistroActivity.class);
+        startActivity(intent);
+    }
+
     private void goDrawerActivity() {
         Intent intent = new Intent(this, DrawerActivity.class);
         startActivity(intent);
