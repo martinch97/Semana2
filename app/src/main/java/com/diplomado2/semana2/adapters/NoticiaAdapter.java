@@ -31,6 +31,11 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
         Picasso.get().load(noticia.getImagen()).into(viewHolder.imagen);
     }
 
+    public void setNoticias(List<Noticia> noticias) {
+        this.noticias = noticias;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return noticias.size();
